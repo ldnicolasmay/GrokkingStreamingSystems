@@ -19,10 +19,20 @@ public class FieldsGrouping implements GroupingStrategy, Serializable {
     return event.getData();
   }
 
+  //// Added by me - group by length of event string
+  //protected Integer getKey(Event event) {
+  //  return ((String) event.getData()).length();
+  //}
+
+  //// Added by me - group by first character of event string
+  //protected Character getKey(Event event) {
+  //  return ((String) event.getData()).charAt(0);
+  //}
+
   /**
    * Get target instance id from an event and component parallelism.
    * @param event The event object to route to the component.
-   * @param The parallelism of the component.
+   * @param parallelism The parallelism of the component.
    * @return The integer key of this event.
    */
   @Override
