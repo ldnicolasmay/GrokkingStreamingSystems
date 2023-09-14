@@ -66,8 +66,13 @@ class TransactionSource extends Source {
       int userAccount = 1;
       String transactionId = UUID.randomUUID().toString();
       Date transactionTime = new Date();
+
       TransactionEvent event = new TransactionEvent(transactionId, amount, transactionTime, merchandiseId, userAccount);
       eventCollector.add(event);
+
+      String foo = "bar";
+      FatTransactionEvent eventSlim = new FatTransactionEvent(transactionId, amount, transactionTime, merchandiseId, userAccount, foo);
+      eventCollector.add("fat_transaction", eventSlim);
 
       Logger.log("\n");  // A empty line before logging new events.
       Logger.log("transaction (" + getName() + ") :: instance " + instance + " --> " + event + "\n");

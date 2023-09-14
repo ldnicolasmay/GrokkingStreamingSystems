@@ -22,6 +22,6 @@ class WindowedProximityAnalyzer extends Operator {
   public void apply(Event transaction, EventCollector eventCollector) {
     TransactionEvent e = ((TransactionEvent)transaction);
     // Dummy analyzer. Allow all transactions.
-    eventCollector.add(new TransactionScoreEvent(e, 0.0f));
+    eventCollector.add(new TransactionScoreEvent(e, 2.0f));
   }
 }
