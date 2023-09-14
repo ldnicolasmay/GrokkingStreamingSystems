@@ -65,6 +65,15 @@ public class FraudDetectionJob {
                 new UserAccountFieldsGrouping()
             )
         );
+    Stream evalResults4 = transactionOut
+        .selectChannel("fat_transaction")
+        .applyOperator(
+            new FatTransactionAnalyzer(
+                "slim transaction analyzer",
+                2,
+                new UserAccountFieldsGrouping()
+            )
+        );
 
 
     ScoreStorage store = new ScoreStorage();
@@ -77,7 +86,7 @@ public class FraudDetectionJob {
     //               store
     //           )
     //       );
-    Streams.of(evalResults1, evalResults3a, evalResults3b)
+    Streams.of(evalResults1, evalResults3a, evalResults3b, evalResults4)
             .applyOperator(
                 new ScoreAggregator(
                     "score aggregator",

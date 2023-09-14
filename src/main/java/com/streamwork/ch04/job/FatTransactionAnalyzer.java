@@ -5,11 +5,11 @@ import com.streamwork.ch04.api.EventCollector;
 import com.streamwork.ch04.api.GroupingStrategy;
 import com.streamwork.ch04.api.Operator;
 
-class WindowedTransactionCountAnalyzer extends Operator {
-  private static final long serialVersionUID = 6494435291715923496L;
+class FatTransactionAnalyzer extends Operator {
+  // private static final long serialVersionUID = 0L;
   private int instance;
 
-  public WindowedTransactionCountAnalyzer(String name, int parallelism, GroupingStrategy grouping) {
+  public FatTransactionAnalyzer(String name, int parallelism, GroupingStrategy grouping) {
     super(name, parallelism, grouping);
   }
 
@@ -20,8 +20,8 @@ class WindowedTransactionCountAnalyzer extends Operator {
 
   @Override
   public void apply(Event transaction, EventCollector eventCollector) {
-    TransactionEvent e = ((TransactionEvent)transaction);
+    FatTransactionEvent e = (FatTransactionEvent) transaction;
     // Dummy analyzer. Allow all transactions.
-    eventCollector.add(new TransactionScoreEvent(e, 3.0f));
+    eventCollector.add(new TransactionScoreEvent(e, 1.0f));
   }
 }
